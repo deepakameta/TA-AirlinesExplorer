@@ -1,6 +1,5 @@
 package com.robustdev.airlineexplorer.ui.screens
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -41,7 +40,6 @@ import com.robustdev.airlineexplorer.R
 import com.robustdev.airlineexplorer.data.model.Airline
 import com.robustdev.airlineexplorer.ui.viewmodel.AirlinesViewModel
 
-@SuppressLint("ViewModelConstructorInComposable")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AirlinesListScreen(
