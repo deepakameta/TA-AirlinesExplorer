@@ -21,10 +21,13 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -50,9 +53,31 @@ fun AirlinesListScreen(
     val loading by viewModel.loading.collectAsState()
     val error by viewModel.error.collectAsState()
 
+    val searchQuery = remember { mutableStateOf("") }
+
+    val filteredAirlines = airlines.filter {
+        it.name.contains(searchQuery.value, ignoreCase = true) ||
+                it.country.contains(searchQuery.value, ignoreCase = true)
+
+    }
+
     Scaffold(
         topBar = {
-            TopAppBar(title = { Text("Airlines Explorer") })
+            Column {
+                TopAppBar(title = { Text("Airlines Explorer") })
+
+                TextField(
+                    value = searchQuery.value,
+                    onValueChange = {
+                        searchQuery.value = it
+                    },
+                    placeholder = { Text(text = "Search Airlines...") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                    singleLine = true
+                )
+            }
         },
     ) { padding ->
         Box(
@@ -73,10 +98,10 @@ fun AirlinesListScreen(
                         .fillMaxSize()
                         .padding(8.dp)
                 ) {
-                    items(airlines.size) { index ->
-                        val airline = airlines[index]
+                    items(filteredAirlines.size) { index ->
+                        val airline = filteredAirlines[index]
                         AirlineItem(
-                            airline = airlines[index],
+                            airline = filteredAirlines[index],
                             onNavigate = { navigateToDetailScreen(airline) },
                         )
                     }
