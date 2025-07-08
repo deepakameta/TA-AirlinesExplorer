@@ -8,11 +8,11 @@ An Android app built with Jetpack Compose to explore airlines and view detailed 
 
 ### 🧾 Airline List Screen
 
-<img src="assets/list_screen.png" width="300" />
+<img src="assets/screenshot1" width="300" />
 
 ### 🛬 Airline Detail Screen
 
-<img src="assets/detail_screen.png" width="300" />
+<img src="assets/screenshot2.png" width="300" />
 
 ---
 
