@@ -1,6 +1,5 @@
-package com.robustdev.airlineexplorer.ui
+package com.robustdev.airlineexplorer.ui.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.robustdev.airlineexplorer.MyApp
@@ -8,18 +7,18 @@ import com.robustdev.airlineexplorer.data.local.AirlineLocalDataSource
 import com.robustdev.airlineexplorer.data.local.AirlineRepositoryImpl
 import com.robustdev.airlineexplorer.data.model.Airline
 import com.robustdev.airlineexplorer.domain.usecase.GetAirlinesUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
 class AirlinesViewModel : ViewModel() {
 
     private val getAirlinesUseCase: GetAirlinesUseCase = GetAirlinesUseCase(
-        AirlineRepositoryImpl(AirlineLocalDataSource(MyApp.instance))
+        AirlineRepositoryImpl(
+            AirlineLocalDataSource(MyApp.instance)
+        )
     )
 
     private val _airlines = MutableStateFlow<List<Airline>>(emptyList())

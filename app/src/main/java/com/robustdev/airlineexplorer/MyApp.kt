@@ -1,7 +1,6 @@
 package com.robustdev.airlineexplorer
 
 import android.app.Application
-import android.content.Context
 
 class MyApp : Application() {
     companion object {

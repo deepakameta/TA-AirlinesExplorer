@@ -5,9 +5,9 @@ plugins {
 
     id 'org.jetbrains.kotlin.plugin.serialization' version '2.2.0'
     id 'androidx.navigation.safeargs'
-//
-//    id 'kotlin-kapt'
-//    id 'dagger.hilt.android.plugin'
+
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -62,24 +62,23 @@ dependencies {
     debugImplementation libs.androidx.ui.test.manifest
 
     def nav_version = "2.9.1"
-
     // Jetpack Compose Integration
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
     // By HiltViewModel ext
     implementation "androidx.hilt:hilt-navigation-compose:1.2.0"
 
-//    //Dagger - Hilt
-//    implementation "com.google.dagger:hilt-android:2.56.2"
-//    kapt "com.google.dagger:hilt-android-compiler:2.56.2"
+    //Dagger - Hilt
+    implementation "com.google.dagger:hilt-android:2.56.2"
+    kapt "com.google.dagger:hilt-android-compiler:2.56.2"
 
+    // Used for type conversion json to data class
     implementation "com.google.code.gson:gson:2.13.1"
 
+    // Used for image loading from url
     implementation("io.coil-kt:coil-compose:2.7.0")
-//
-//    // Retrofit
-//    implementation("com.squareup.retrofit2:retrofit:3.0.0")
-//    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
-//    // logging interceptor
-//    implementation("com.squareup.okhttp3:logging-interceptor:5.1.0")
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 }
