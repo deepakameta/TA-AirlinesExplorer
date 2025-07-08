@@ -20,13 +20,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.robustdev.airlineexplorer.R
 import com.robustdev.airlineexplorer.data.model.Airline
 
@@ -47,12 +44,12 @@ fun AirlineDetailScreen(airline: Airline) {
                 .padding(20.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-                    /*
-                    * These image url is not working. So, using static image.
-                    * We can use AsyncImagePainter from coil library to load image
-                    * directly form the url.
-                    * painter = rememberAsyncImagePainter(it.logo_url),
-                    **/
+            /*
+            * These image url is not working. So, using static image.
+            * We can use AsyncImagePainter from coil library to load image
+            * directly form the url.
+            * painter = rememberAsyncImagePainter(it.logo_url),
+            **/
             Image(
                 painter = painterResource(id = R.drawable.flight_color),
                 contentDescription = airline.name,

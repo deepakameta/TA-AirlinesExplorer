@@ -1,21 +1,20 @@
 package com.robustdev.airlineexplorer.domain.module
 
 import android.content.Context
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.robustdev.airlineexplorer.data.local.AirlineDataSource
-import com.robustdev.airlineexplorer.data.local.AirlineLocalDataSource
-import com.robustdev.airlineexplorer.data.local.AirlineRepository
+import com.robustdev.airlineexplorer.data.datasource.AirlineDataSource
+import com.robustdev.airlineexplorer.data.datasource.AirlineLocalDataSource
 import com.robustdev.airlineexplorer.data.local.AirlineRepositoryImpl
-import com.robustdev.airlineexplorer.data.remote.AirlineApi
+import com.robustdev.airlineexplorer.data.remote.AirlineApiService
+import com.robustdev.airlineexplorer.data.remote.RemoteRepoImpl
+import com.robustdev.airlineexplorer.domain.repo.AirlineRepository
+import com.robustdev.airlineexplorer.domain.repo.RemoteRepo
 import com.robustdev.airlineexplorer.domain.usecase.GetAirlinesUseCase
+import com.robustdev.airlineexplorer.utils.RemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -41,15 +40,13 @@ object AppModule {
     ): GetAirlinesUseCase = GetAirlinesUseCase(repository)
 
     @Provides
-    @Singleton
-    fun provideRetrofit(gson: Gson): Retrofit {
-        return Retrofit.Builder().baseUrl("mock-base-url")
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create())).build()
+    fun provideApi(remoteDataSource: RemoteDataSource): AirlineApiService {
+        return remoteDataSource.buildApi(AirlineApiService::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideAirlineApi(retrofit: Retrofit): AirlineApi {
-        return retrofit.create(AirlineApi::class.java)
+    fun provideRemoteRepo(api: AirlineApiService): RemoteRepo {
+        return RemoteRepoImpl(api)
     }
 }

@@ -2,9 +2,6 @@ package com.robustdev.airlineexplorer.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.robustdev.airlineexplorer.MyApp
-import com.robustdev.airlineexplorer.data.local.AirlineLocalDataSource
-import com.robustdev.airlineexplorer.data.local.AirlineRepositoryImpl
 import com.robustdev.airlineexplorer.data.model.Airline
 import com.robustdev.airlineexplorer.domain.usecase.GetAirlinesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -2,7 +2,7 @@ package com.robustdev.airlineexplorer
 
 import android.content.Context
 import android.content.res.AssetManager
-import com.robustdev.airlineexplorer.data.local.AirlineLocalDataSource
+import com.robustdev.airlineexplorer.data.datasource.AirlineLocalDataSource
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first

@@ -1,6 +1,6 @@
 package com.robustdev.airlineexplorer
 
-import com.robustdev.airlineexplorer.data.local.AirlineRepository
+import com.robustdev.airlineexplorer.domain.repo.AirlineRepository
 import com.robustdev.airlineexplorer.data.model.Airline
 import com.robustdev.airlineexplorer.domain.usecase.GetAirlinesUseCase
 import io.mockk.every

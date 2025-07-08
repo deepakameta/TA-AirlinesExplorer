@@ -1,4 +1,4 @@
-package com.robustdev.airlineexplorer.data.local
+package com.robustdev.airlineexplorer.domain.repo
 
 import com.robustdev.airlineexplorer.data.model.Airline
 import kotlinx.coroutines.flow.Flow

@@ -1,4 +1,4 @@
-package com.robustdev.airlineexplorer.data.local
+package com.robustdev.airlineexplorer.data.datasource
 
 import android.content.Context
 import com.google.gson.Gson
