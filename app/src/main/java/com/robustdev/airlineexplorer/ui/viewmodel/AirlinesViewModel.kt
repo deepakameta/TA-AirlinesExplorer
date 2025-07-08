@@ -7,19 +7,17 @@ import com.robustdev.airlineexplorer.data.local.AirlineLocalDataSource
 import com.robustdev.airlineexplorer.data.local.AirlineRepositoryImpl
 import com.robustdev.airlineexplorer.data.model.Airline
 import com.robustdev.airlineexplorer.domain.usecase.GetAirlinesUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class AirlinesViewModel : ViewModel() {
-
-    private val getAirlinesUseCase: GetAirlinesUseCase = GetAirlinesUseCase(
-        AirlineRepositoryImpl(
-            AirlineLocalDataSource(MyApp.instance)
-        )
-    )
+@HiltViewModel
+class AirlinesViewModel @Inject constructor(
+    private val getAirlinesUseCase: GetAirlinesUseCase
+) : ViewModel() {
 
     private val _airlines = MutableStateFlow<List<Airline>>(emptyList())
     val airlines: StateFlow<List<Airline>> = _airlines
@@ -38,7 +36,7 @@ class AirlinesViewModel : ViewModel() {
         _loading.value = true
         viewModelScope.launch {
             try {
-                getAirlinesUseCase().collectLatest {
+                getAirlinesUseCase.invoke().collectLatest {
                     _airlines.value = it
                     _loading.value = false
                 }

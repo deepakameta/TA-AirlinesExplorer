@@ -36,6 +36,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.robustdev.airlineexplorer.R
 import com.robustdev.airlineexplorer.data.model.Airline
 import com.robustdev.airlineexplorer.ui.viewmodel.AirlinesViewModel
@@ -45,18 +46,15 @@ import com.robustdev.airlineexplorer.ui.viewmodel.AirlinesViewModel
 @Composable
 fun AirlinesListScreen(
     navigateToDetailScreen: (Airline) -> Unit,
+    viewModel: AirlinesViewModel = hiltViewModel(),
 ) {
-
-    val viewModel = AirlinesViewModel()
     val airlines by viewModel.airlines.collectAsState()
     val loading by viewModel.loading.collectAsState()
     val error by viewModel.error.collectAsState()
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("Airlines Explorer") },
-            )
+            TopAppBar(title = { Text("Airlines Explorer") })
         },
     ) { padding ->
         Box(
@@ -110,13 +108,12 @@ fun AirlineItem(
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Image(
-                    /*
-                    * These image url is not working. So, using static image.
-                    * We can use AsyncImagePainter from coil library to load image
-                    * directly form the url.
-                    * painter = rememberAsyncImagePainter(it.logo_url),
-                    **/
+            Image(/*
+                * These image url is not working. So, using static image.
+                * We can use AsyncImagePainter from coil library to load image
+                * directly form the url.
+                * painter = rememberAsyncImagePainter(it.logo_url),
+                **/
                 painter = painterResource(id = R.drawable.flight_color),
                 contentDescription = airline.name,
                 modifier = Modifier.size(48.dp),
@@ -124,8 +121,7 @@ fun AirlineItem(
             )
             Spacer(modifier = Modifier.width(16.dp))
             Column(
-                modifier = Modifier.padding(16.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp)
+                modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
                 Text(
                     text = airline.name,
