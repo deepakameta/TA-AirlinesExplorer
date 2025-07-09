@@ -71,7 +71,7 @@ An Android app built with Jetpack Compose to explore airlines and view detailed 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/airline-explorer.git
+   git clone https://github.com/deepakameta/TA-AirlinesExplorer
    cd airline-explorer
 
 2. **Open in Android Studio**
